@@ -44,10 +44,26 @@ body{
 .itemSec{
     display: flex;
     justify-content: center;
+    padding-top: 10px;
+}
+.itemSec > div > p{
+    margin: 0;
+    font-size: 21px;
+    border-bottom: 3px solid gray;
+    padding-bottom: 3px;
+    margin-left: 10px;
+    margin-right: 10px;
+    color: grey;
+
+}
+.oderFood h3{
+    padding-top: 30px;
+    font-size: 30px;
+    color: blueviolet;
 }
 input[type="checkbox"][id^="checkbox"] {
     display: none;
-  }
+}
 
 label {
     border: 1px solid #fff;
@@ -65,21 +81,25 @@ label {
     border-radius: 50%;
     border: 1px solid grey;
     position: absolute;
-    top: -5px;
-    left: -5px;
-    width: 25px;
-    height: 25px;
+    top: -15px;
+    left: -15px;
+    width: 45px;
+    height: 45px;
     text-align: center;
-    line-height: 28px;
+    font-size: 32px;
+    line-height: 45px;
     transition-duration: 0.4s;
     transform: scale(0);
+    z-index: 100;
   }
 
   label img {
-    height: 100px;
-    width: 100px;
+    height: 150px;
+    width: 200px;
     transition-duration: 0.2s;
     transform-origin: 50% 50%;
+    border-radius: 15px;
+    /* box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px; */
   }
   :checked + label {
     border-color: #ddd;
@@ -99,6 +119,11 @@ label {
   
   .oderFood{
       text-align: center;
+      /* background-color: rgb(199, 237, 123); */
+      margin: 100px 200px;
+      border-radius: 20px;
+      box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+
   }
 
   .waitOrder{
@@ -121,7 +146,10 @@ label {
       color: #fff;
       font-weight: 600;
       cursor: pointer;
+      margin-top: 60px;
+      margin-bottom: 30px;
   }
+
   #orderMessage{
       text-align: center;
   }

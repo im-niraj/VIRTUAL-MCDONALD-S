@@ -15,7 +15,7 @@ banner.map((e)=> {
     var div = document.createElement('div');
     div.innerHTML = `<img src="${e}" alt="">`;
     innerDIv.append(div);
-})
+});
 
 
 var itemOne = document.querySelector('#checkbox1');
@@ -23,48 +23,56 @@ var itemTwo = document.querySelector('#checkbox2');
 var itemThree = document.querySelector('#checkbox3');
 var itemFour = document.querySelector('#checkbox4');
 
-async function orderPromis(time){
-    let myPromise = new Promise(function (resolve, reject) {
+function orderPromis(time){
+    return new Promise(function (resolve, reject) {
         setTimeout(function(){
             resolve(`Order is Ready...`);
-        }, time*1000);
-        
+            console.log(time);
+        }, (time+1)*1000);
+        countDown(time);
+        console.log(time);
     });
-    orderMessage.innerHTML = await myPromise;
-}
+};
 
-
-
-function run(time){
-    orderPromis(time+2);
+function countDown(time){
     var x = setInterval(function(){
         if(time===0){
-            runStop();
+            runStop(x);
         }
-        waitOrder.innerHTML = `Wait for <span id='counter'>${time--} second</span>`
-        
-    },1000);
-
-    function runStop(){
-        clearInterval(x);
-        
-    }
+        waitOrder.innerHTML = ` Wait for &nbsp; <i class="fas fa-stopwatch-20"></i> <span id='counter'>${time--} second</span>`
+    },1000)
 }
-
-function orderFood(){
-    // console.log(itemOne.checked)
-    // console.log(itemTwo.checked)
-    // console.log(itemThree.checked)
-    // console.log(itemFour.checked)
-    let time = Math.random()*8 +4;
-        console.log(time)
-        run(Math.floor(time));
-        
-        // orderFood(Math.floor(time));
-    // alert('order confirm');
+function runStop(x){
+    clearInterval(x);
+    setTimeout(function(){
+        clearOrderDetail();
+    },3000)
+    
+}
+function clearOrderDetail(){
     itemOne.checked = false;
     itemTwo.checked = false;
     itemThree.checked = false;
     itemFour.checked = false;
+    waitOrder.innerHTML = null;
+    orderMessage.innerHTML = null;
+    itemOne.checked = false;
+    itemTwo.checked = false;
+    itemThree.checked = false;
+    itemFour.checked = false;
+}
+
+async function run(time){
+    var response = await orderPromis(time);
+    orderMessage.textContent = response;
+}
+
+
+function orderFood(){
+    let time = Math.random()*8 +4;
+    alert('order confirm');
+    run(Math.floor(time));
+    
+    
 }
 
