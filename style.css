@@ -2,14 +2,67 @@ body{
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
 }
-.navbar{
+.container{
+    position: relative;
+}
+.alert{
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(100, 100, 100, .5);
+    z-index: 100;
+}
+.displayClassNone{
+    display: none;
+}
+.displayClassGrid{
     display: flex;
+}
+.alertCard{
+    height: 600px;
+    width: 900px;
+    border-radius: 15px;
+    background-color: #dc2626;
+    text-align: center;
+}
+.alertCard h1{
+    text-align: center;
+    color: yellow;
+    font-size: 55px;
+}
+.alertCard .imgReady{
+    margin:0 140px;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap:20px;
+}
+.alertCard .imgReady img{
+    width: 100%;
+}
+.alertCard button{
+    margin-top: 30px;
+    width: 100px;
+    font-size: 22px;
+    border: 0;
+    border-radius: 7px;
+    padding: 10px;
+    cursor: pointer;
+}
+.navbar{
+    display: flex; 
     justify-content: space-between;
     height: 80px;
-    padding: 10px 24px;
     background-color: #bd1906;;
     align-items: center;
     color: #fff;
+    width: 100%;
+}
+.navbar > div{
+    margin-left: 30px;
+    margin-right: 30px;
 }
 .navbar .h1{
     font-weight: bold;
@@ -26,10 +79,10 @@ body{
 }
 
 .innerDIv{
-    /* overflow: hidden; */
+    overflow: hidden;
     display: flex;
-    /* margin-right: -15px;
-    margin-left: -15px; */
+    margin-right: -15px;
+    margin-left: -15px;
 }
 .innerDIv > div{
     border-radius: 15px;
@@ -90,7 +143,7 @@ label {
     line-height: 45px;
     transition-duration: 0.4s;
     transform: scale(0);
-    z-index: 100;
+    z-index: 30;
   }
 
   label img {
@@ -99,7 +152,6 @@ label {
     transition-duration: 0.2s;
     transform-origin: 50% 50%;
     border-radius: 15px;
-    /* box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px; */
   }
   :checked + label {
     border-color: #ddd;
@@ -113,21 +165,28 @@ label {
   
   :checked + label img {
     transform: scale(0.9);
-    /* box-shadow: 0 0 5px #333; */
     z-index: -1;
   }
   
   .oderFood{
+      position: relative;
       text-align: center;
-      /* background-color: rgb(199, 237, 123); */
-      margin: 100px 200px;
+      margin: 50px 200px;
       border-radius: 20px;
       box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-
+  }
+  #orderNo{
+    position: absolute;
+    margin-top: -45px;
+    /* background-image: linear-gradient(to left, rgba(255,0,0,0), rgba(255,0,0,1)); */
+  /* ) */
+    width: 300px;
+    text-align: left;
+    padding-left: 20px;
   }
 
   .waitOrder{
-      margin-top: 50px;
+      margin-top: 20px;
       display: flex;
       justify-content: center;
       font-size: 20px;
@@ -150,6 +209,109 @@ label {
       margin-bottom: 30px;
   }
 
-  #orderMessage{
-      text-align: center;
+
+   @media all and (min-width: 1080px) and (max-width: 1420px){
+    .itemSec{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        padding-top: 10px;
+    }
+    .itemSec > div > p{
+        margin-left: 50px;
+        margin-right: 50px;
+    }
   }
+
+  @media all and (min-width: 880px) and (max-width: 1080px){
+    .itemSec{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 20px;
+        padding-top: 10px;
+    }
+    .itemSec > div > p{
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+  }
+  @media all and (min-width: 671px) and (max-width: 880px){
+    .alertCard{
+        height: 600px;
+        width: 900px;
+        border-radius: 15px;
+        background-color: #dc2626;
+    }
+    .alertCard h1{
+        text-align: center;
+        color: yellow;
+        font-size: 55px;
+    }
+    .alertCard .imgReady{
+        margin: 60px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        grid-gap: 10px 20px;
+    }
+    .oderFood{
+        text-align: center;
+        margin: 50px 100px;
+        border-radius: 20px;
+        box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  
+    }
+    .itemSec{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 20px;
+        padding-top: 10px;
+    }
+    .itemSec > div > p{
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+  }
+
+  @media all and (min-width: 340px) and (max-width: 671px){
+    .oderFood{
+        text-align: center;
+        margin: 50px 50px;
+        border-radius: 20px;
+        box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  
+    }
+    .navbar{
+        display: block;
+        width: 100%;
+    }
+    .navbar .h1{
+        font-weight: bold;
+        font-size: 18px;
+    }
+    .navbar .user{
+        font-size: 28px;
+        display: none;
+    }
+    
+    .slider{
+        margin: 20px;
+        position: relative;
+        overflow: hidden;
+        /* display: none; */
+    }
+
+    .itemSec{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 20px;
+        padding-top: 10px;
+        margin: 100px;
+    }
+    .itemSec > div > p{
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+  } 

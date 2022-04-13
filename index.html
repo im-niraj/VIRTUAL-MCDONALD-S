@@ -11,6 +11,13 @@
 </head>
 <body>
     <div class="container">
+        <div id="alertCard" class="alert displayClassNone">
+            <div class="alertCard">
+                <h1>Your order is Ready!</h1>
+                <div class="imgReady"></div>
+                <button onclick="orderCloseBtn()">Go for Next order</button>
+            </div>
+        </div>
         <div class="navbar">
             <div class="logo">
                 <img src="https://images.mcdelivery.co.in/hardcastle-restaurants-pvt-ltd/image/upload/v1591261933/NewWebsiteResource2020/Assets/Img/Logo.svg" alt="">
@@ -18,13 +25,16 @@
             <div class="h1">VIRTUAL MCDONALD'S  </div>
             <div class="user"><i class="fa-solid fa-user-check"></i></div>
         </div>
-        <div class="slider">
+         <div class="slider">
             <div class="innerDIv">
-           <!-- banner goes here -->
+           <!-- banner goes here  -->
             </div>
         </div>
-        <hr>
+        <hr> 
+        <div class="waitOrder"></div>  <!--waiting counter-->
+        
         <div class="oderFood">
+            <div id="orderNo"><h4>Order No: <span id="orderNoCounter">0</span></h4></div> 
             <h3>Choose your food <i class="fa-solid fa-burger"></i></h3>
             <div class="itemSec">
                 <div>
@@ -49,13 +59,8 @@
                 </div>
                 
             </div>
-            <button onclick="orderFood()">Order meal <i class="fa-solid fa-fork-knife"></i></button>
-        </div>
-        
-        <div class="waitOrder">
-            
-        </div>
-        <h1 id="orderMessage"></h1>
+            <button onclick="orderFood()">Order meal</button>
+        </div> 
     </div>
 
     <script src="script.js"></script>

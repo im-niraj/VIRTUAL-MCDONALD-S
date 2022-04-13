@@ -8,9 +8,21 @@ var banner = [
     'https://images.mcdelivery.co.in/hardcastle-restaurants-pvt-ltd/image/upload/f_auto,q_auto,w_420/v1646237005/WebBanner/Banner306.png',
 ]
 
+var checkboxImages = [
+    'https://cdn2.howtostartanllc.com/images/business-ideas/business-idea-images/fast-food.jpg',
+    "https://api.pizzahut.io/v1/content/en-in/in-1/images/pizza/corn.4f5188ab4391cb45d4a4ed9e849f1e32.1.jpg",
+    "https://img-global.cpcdn.com/recipes/2da8cad7018f8486/1200x630cq70/photo.jpg",
+    "https://images.mcdelivery.co.in/hardcastle-restaurants-pvt-ltd/image/upload/f_auto,q_auto,w_250/v1646116928/Item/806D.png"
+] 
+
 var innerDIv = document.querySelector('.innerDIv');
 var waitOrder = document.querySelector('.waitOrder');
 var orderMessage = document.querySelector('#orderMessage');
+var alertCard = document.querySelector('#alertCard');
+var imgReady = document.querySelector('.imgReady');
+var orderNoCounter = document.querySelector('#orderNoCounter');
+var count = 0
+orderNoCounter.textContent = count;
 banner.map((e)=> {
     var div = document.createElement('div');
     div.innerHTML = `<img src="${e}" alt="">`;
@@ -35,6 +47,8 @@ function orderPromis(time){
 };
 
 function countDown(time){
+    count++;
+    orderNoCounter.textContent = count;
     var x = setInterval(function(){
         if(time===0){
             runStop(x);
@@ -44,9 +58,9 @@ function countDown(time){
 }
 function runStop(x){
     clearInterval(x);
-    setTimeout(function(){
-        clearOrderDetail();
-    },3000)
+    // setTimeout(function(){
+    //     clearOrderDetail();
+    // },3000)
     
 }
 function clearOrderDetail(){
@@ -55,24 +69,46 @@ function clearOrderDetail(){
     itemThree.checked = false;
     itemFour.checked = false;
     waitOrder.innerHTML = null;
-    orderMessage.innerHTML = null;
     itemOne.checked = false;
     itemTwo.checked = false;
     itemThree.checked = false;
     itemFour.checked = false;
+    imgReady.innerHTML = null;
 }
 
-async function run(time){
+async function run(time, tempArr){
     var response = await orderPromis(time);
-    orderMessage.textContent = response;
+    tempArr.map((el)=> {
+        var img = document.createElement('img');
+        img.src = el;
+        imgReady.append(img);
+    })
+    console.log(tempArr);
+    alertCard.classList.remove('displayClassNone');
+    alertCard.classList.add('displayClassGrid');
+    // orderMessage.textContent = response;
 }
 
+function orderCloseBtn(){
+    clearOrderDetail();
+    alertCard.classList.add('displayClassNone')
+    alertCard.classList.remove('displayClassGrid')
+}
 
 function orderFood(){
     let time = Math.random()*8 +4;
+    var arr = [itemOne.checked,
+               itemTwo.checked,
+               itemThree.checked,
+               itemFour.checked
+            ];
+    var tempArr = [];
+    for(var i=0; i<4; i++){
+        if(arr[i]){
+            tempArr.push(checkboxImages[i]);
+        }
+    }
     alert('order confirm');
-    run(Math.floor(time));
-    
+    run(Math.floor(time), tempArr);
     
 }
-
