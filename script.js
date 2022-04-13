@@ -58,10 +58,6 @@ function countDown(time){
 }
 function runStop(x){
     clearInterval(x);
-    // setTimeout(function(){
-    //     clearOrderDetail();
-    // },3000)
-    
 }
 function clearOrderDetail(){
     itemOne.checked = false;
@@ -79,20 +75,21 @@ function clearOrderDetail(){
 async function run(time, tempArr){
     var response = await orderPromis(time);
     tempArr.map((el)=> {
+        var div = document.createElement('div');
         var img = document.createElement('img');
         img.src = el;
-        imgReady.append(img);
+        div.append(img)
+        imgReady.append(div);
     })
-    console.log(tempArr);
     alertCard.classList.remove('displayClassNone');
     alertCard.classList.add('displayClassGrid');
-    // orderMessage.textContent = response;
 }
 
 function orderCloseBtn(){
     clearOrderDetail();
-    alertCard.classList.add('displayClassNone')
-    alertCard.classList.remove('displayClassGrid')
+    alertCard.classList.add('displayClassNone');
+    alertCard.classList.remove('displayClassGrid');
+    document.querySelector('#submit').disabled = false;
 }
 
 function orderFood(){
@@ -110,5 +107,5 @@ function orderFood(){
     }
     alert('order confirm');
     run(Math.floor(time), tempArr);
-    
+    document.querySelector('#submit').disabled = true;
 }
