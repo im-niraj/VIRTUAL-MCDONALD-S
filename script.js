@@ -21,7 +21,8 @@ var orderMessage = document.querySelector('#orderMessage');
 var alertCard = document.querySelector('#alertCard');
 var imgReady = document.querySelector('.imgReady');
 var orderNoCounter = document.querySelector('#orderNoCounter');
-var count = 0
+var orderMessage = document.querySelector('#orderMessage');
+var count = 0;
 orderNoCounter.textContent = count;
 banner.map((e)=> {
     var div = document.createElement('div');
@@ -48,10 +49,12 @@ function orderPromis(time){
 
 function countDown(time){
     count++;
+    orderMessage.textContent = 'preparing';
     orderNoCounter.textContent = count;
     var x = setInterval(function(){
         if(time===0){
             runStop(x);
+            orderMessage.textContent = 'completed';
         }
         waitOrder.innerHTML = ` Wait for &nbsp; <i class="fas fa-stopwatch-20"></i> <span id='counter'>${time--} second</span>`
     },1000)
@@ -100,12 +103,20 @@ function orderFood(){
                itemFour.checked
             ];
     var tempArr = [];
+    var flag = false;
     for(var i=0; i<4; i++){
         if(arr[i]){
             tempArr.push(checkboxImages[i]);
+            flag=true;
         }
     }
-    alert('order confirm');
-    run(Math.floor(time), tempArr);
-    document.querySelector('#submit').disabled = true;
+    if(flag){
+        alert('order confirm');
+        run(Math.floor(time), tempArr);
+        document.querySelector('#submit').disabled = true;
+        flag = false;
+    }
+    else{
+        alert('choose an order please...');
+    }
 }
