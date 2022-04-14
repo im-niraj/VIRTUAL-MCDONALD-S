@@ -215,7 +215,12 @@ label {
       margin-top: 60px;
       margin-bottom: 30px;
   }
-
+  .oderFood button:disabled,
+  .oderFood button[disabled]{
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+  }
 
    @media all and (min-width: 1080px) and (max-width: 1420px){
     .itemSec{
